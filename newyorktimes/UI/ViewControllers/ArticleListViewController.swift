@@ -13,11 +13,10 @@ class ArticleListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    
     private var articles: [Article] = []
-    
-    var currentPage : Int = 0
-    var isLoadingList : Bool = false
+    private var filteredArticles: [Article] = []
+    private var currentPage : Int = 0
+    private var isLoadingList : Bool = false
     
     //MARK: - Lifecycle overrides
     
@@ -34,6 +33,7 @@ class ArticleListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupSearchBar()
         setupTableView()
     }
 
@@ -45,6 +45,10 @@ class ArticleListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
+    private func setupSearchBar() {
+        searchBar.delegate = self
+    }
 
 }
 
@@ -52,13 +56,24 @@ class ArticleListViewController: UIViewController {
 extension ArticleListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        if isFiltering() {
+            return filteredArticles.count
+        } else {
+            return articles.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let abstract = articles[indexPath.row].abstract
-        let multimedia: [ArticleImage] = articles[indexPath.row].multimedia
+        let article: Article
+        if isFiltering(){
+            article = filteredArticles[indexPath.row]
+        } else {
+            article = articles[indexPath.row]
+        }
+        
+        let abstract = article.abstract
+        let multimedia: [ArticleImage] = article.multimedia
         let articleImage: ArticleImage? = multimedia.filter { $0.crop_name == "thumbStandard"}.first
         let thumbnailImageUrl = articleImage?.url
         
@@ -105,5 +120,31 @@ extension ArticleListViewController: UIScrollViewDelegate {
             self.isLoadingList = false
             self.tableView.reloadData()
         }
+    }
+}
+
+
+// MARK: - UISearchBarDelegate
+extension ArticleListViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("searchBarEditing...")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText = \(searchText)")
+        filterContentForSearchText(searchText)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredArticles = articles.filter({( article : Article) -> Bool in
+            return article.abstract?.lowercased().contains(searchText.lowercased()) ?? false
+        })
+        tableView.reloadData()
+    }
+    
+    private func isFiltering() -> Bool {
+        let searchTermLength = searchBar.text?.count ?? 0
+        return searchTermLength > 0
     }
 }
