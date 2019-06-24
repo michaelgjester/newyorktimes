@@ -14,12 +14,14 @@
 		1DE7052A22C045BC001DBAD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7052822C045BC001DBAD3 /* LaunchScreen.storyboard */; };
 		1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053222C04628001DBAD3 /* ImageCache.swift */; };
 		1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053322C04628001DBAD3 /* NetworkingManager.swift */; };
-		1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */; };
+		1DE7053722C04628001DBAD3 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053422C04628001DBAD3 /* UIImageView+Extensions.swift */; };
 		1DE7053D22C055C9001DBAD3 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */; };
 		1DE7053E22C055C9001DBAD3 /* ArticleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */; };
 		1DE7054122C057EF001DBAD3 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053F22C057EF001DBAD3 /* ArticleTableViewCell.swift */; };
 		1DE7054222C057EF001DBAD3 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7054022C057EF001DBAD3 /* ArticleTableViewCell.xib */; };
 		1DE7054422C057FF001DBAD3 /* CellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7054322C057FF001DBAD3 /* CellProtocols.swift */; };
+		1DE7054722C08FAD001DBAD3 /* ArticleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */; };
+		1DE7054822C08FAD001DBAD3 /* ArticleDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7054622C08FAD001DBAD3 /* ArticleDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +34,14 @@
 		1DE7052B22C045BC001DBAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DE7053222C04628001DBAD3 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1DE7053322C04628001DBAD3 /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
-		1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
+		1DE7053422C04628001DBAD3 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewController.xib; sourceTree = "<group>"; };
 		1DE7053F22C057EF001DBAD3 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		1DE7054022C057EF001DBAD3 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
 		1DE7054322C057FF001DBAD3 /* CellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocols.swift; sourceTree = "<group>"; };
+		1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewController.swift; sourceTree = "<group>"; };
+		1DE7054622C08FAD001DBAD3 /* ArticleDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		1DE7051E22C045BB001DBAD3 /* newyorktimes */ = {
 			isa = PBXGroup;
 			children = (
+				1DE7054922C09EB6001DBAD3 /* Extensions */,
 				1DE7053822C05561001DBAD3 /* UI */,
 				1DE7053122C045ED001DBAD3 /* Networking */,
 				1DE7051F22C045BB001DBAD3 /* AppDelegate.swift */,
@@ -85,7 +90,6 @@
 			children = (
 				1DE7053222C04628001DBAD3 /* ImageCache.swift */,
 				1DE7053322C04628001DBAD3 /* NetworkingManager.swift */,
-				1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -116,8 +120,18 @@
 				1DE7052322C045BB001DBAD3 /* Main.storyboard */,
 				1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */,
 				1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */,
+				1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */,
+				1DE7054622C08FAD001DBAD3 /* ArticleDetailsViewController.xib */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1DE7054922C09EB6001DBAD3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1DE7053422C04628001DBAD3 /* UIImageView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +196,7 @@
 				1DE7052A22C045BC001DBAD3 /* LaunchScreen.storyboard in Resources */,
 				1DE7053E22C055C9001DBAD3 /* ArticleListViewController.xib in Resources */,
 				1DE7052722C045BC001DBAD3 /* Assets.xcassets in Resources */,
+				1DE7054822C08FAD001DBAD3 /* ArticleDetailsViewController.xib in Resources */,
 				1DE7052522C045BB001DBAD3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,7 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */,
-				1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */,
+				1DE7053722C04628001DBAD3 /* UIImageView+Extensions.swift in Sources */,
+				1DE7054722C08FAD001DBAD3 /* ArticleDetailsViewController.swift in Sources */,
 				1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */,
 				1DE7054422C057FF001DBAD3 /* CellProtocols.swift in Sources */,
 				1DE7053D22C055C9001DBAD3 /* ArticleListViewController.swift in Sources */,

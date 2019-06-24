@@ -1,5 +1,5 @@
 //
-//  UIImageView+Networking.swift
+//  UIImageView+Extensions.swift
 //  restaurants
 //
 //  Created by Michael Jester on 6/23/19.

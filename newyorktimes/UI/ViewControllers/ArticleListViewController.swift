@@ -93,9 +93,9 @@ extension ArticleListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ArticleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: probably want to push a detail vc when user makes a selection
-        //for now just animate the selection action
         tableView.deselectRow(at: indexPath, animated: true)
+        let articleDetailsViewController = ArticleDetailsViewController(article: articles[indexPath.row])
+        self.navigationController?.pushViewController(articleDetailsViewController, animated: true)
     }
 }
 

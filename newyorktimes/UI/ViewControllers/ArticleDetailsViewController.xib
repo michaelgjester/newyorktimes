@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleDetailsViewController" customModule="newyorktimes" customModuleProvider="target">
+            <connections>
+                <outlet property="abstractLabel" destination="s3a-Zm-5EA" id="9gO-wJ-16K"/>
+                <outlet property="imageView" destination="Ww9-gF-luG" id="OjH-qV-rgl"/>
+                <outlet property="leadParagraphTextView" destination="d6y-oU-mqb" id="cjO-EU-V6s"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webLinkTextView" destination="Ahq-ac-twu" id="dh1-TW-Mth"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ww9-gF-luG">
+                    <rect key="frame" x="47" y="20" width="320" height="320"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="320" id="1yR-eM-m4V"/>
+                        <constraint firstAttribute="width" constant="320" id="SlS-A6-cOc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3a-Zm-5EA" userLabel="abstractLabel">
+                    <rect key="frame" x="20" y="406" width="374" height="20.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d6y-oU-mqb" userLabel="leadParagraphTextView">
+                    <rect key="frame" x="20" y="466.33333333333331" width="374" height="219.66666666666669"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" link="YES"/>
+                    </accessibility>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Click here for the full article" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ahq-ac-twu" userLabel="webUrlTextView">
+                    <rect key="frame" x="127" y="696" width="160" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="f9n-Sv-mgJ"/>
+                        <constraint firstAttribute="height" constant="40" id="lRT-gO-fnF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="d6y-oU-mqb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2o7-WF-uxY"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Fv1-ak-BMd"/>
+                <constraint firstItem="Ww9-gF-luG" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Shq-nm-wDN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d6y-oU-mqb" secondAttribute="trailing" constant="20" id="XHR-Ou-Eib"/>
+                <constraint firstItem="s3a-Zm-5EA" firstAttribute="top" secondItem="Ww9-gF-luG" secondAttribute="bottom" constant="66" id="XgN-fw-iq1"/>
+                <constraint firstItem="d6y-oU-mqb" firstAttribute="top" secondItem="s3a-Zm-5EA" secondAttribute="bottom" constant="40" id="a5H-W6-gEv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ahq-ac-twu" secondAttribute="bottom" id="aoM-ZP-Ob0"/>
+                <constraint firstItem="Ww9-gF-luG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cXg-74-PVc"/>
+                <constraint firstItem="s3a-Zm-5EA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="g5S-2u-UUR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ahq-ac-twu" secondAttribute="trailing" constant="60" id="lGB-TF-mee"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="top" secondItem="d6y-oU-mqb" secondAttribute="bottom" constant="10" id="paV-nA-YFv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s3a-Zm-5EA" secondAttribute="trailing" constant="20" id="ypm-fc-CNy"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="zNh-LY-sFj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="47.826086956521742" y="75.669642857142847"/>
+        </view>
+    </objects>
+</document>

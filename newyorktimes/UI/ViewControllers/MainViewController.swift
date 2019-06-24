@@ -16,8 +16,8 @@ class MainViewController: UIViewController {
         
         NetworkingManager.loadArticlesWithCompletion { (articles) in
             let articlesListViewController = ArticleListViewController(articles: articles)
-            //self.navigationController?.pushViewController(articlesListViewController, animated: true)
-            self.present(articlesListViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(articlesListViewController, animated: true)
+            //self.present(articlesListViewController, animated: true, completion: nil)
         }
     }
 
