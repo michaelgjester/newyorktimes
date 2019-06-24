@@ -18,6 +18,7 @@ class ArticleDetailsViewController: UIViewController {
     @IBOutlet weak var abstractLabel: UILabel!
     @IBOutlet weak var leadParagraphTextView: UITextView!
     @IBOutlet weak var webLinkTextView: UITextView!
+    @IBOutlet weak var shareButton: UIButton!
     
     let article: Article
     
@@ -58,10 +59,18 @@ class ArticleDetailsViewController: UIViewController {
             attributedString.addAttribute(.link, value: webUrl, range: NSRange(location: 0, length: displayString.count))
             webLinkTextView.attributedText = attributedString
         }
+        
+        shareButton.setTitle("SHARE", for: .normal)
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func shareButtonTapped() {
+        let activityItems = ["check out this link", article.web_url]
+        let vc = UIActivityViewController(activityItems: activityItems as [Any], applicationActivities: nil)
+        present(vc, animated: true, completion: nil)
     }
 
 }
-
 
 extension ArticleDetailsViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {

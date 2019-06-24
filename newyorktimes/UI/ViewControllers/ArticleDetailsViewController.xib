@@ -15,6 +15,7 @@
                 <outlet property="abstractLabel" destination="s3a-Zm-5EA" id="9gO-wJ-16K"/>
                 <outlet property="imageView" destination="Ww9-gF-luG" id="OjH-qV-rgl"/>
                 <outlet property="leadParagraphTextView" destination="d6y-oU-mqb" id="cjO-EU-V6s"/>
+                <outlet property="shareButton" destination="iI3-Rp-5UT" id="PAM-s6-CRU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webLinkTextView" destination="Ahq-ac-twu" id="dh1-TW-Mth"/>
             </connections>
@@ -25,20 +26,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ww9-gF-luG">
-                    <rect key="frame" x="47" y="20" width="320" height="320"/>
+                    <rect key="frame" x="87" y="30" width="240" height="240"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="320" id="1yR-eM-m4V"/>
-                        <constraint firstAttribute="width" constant="320" id="SlS-A6-cOc"/>
+                        <constraint firstAttribute="height" constant="240" id="1yR-eM-m4V"/>
+                        <constraint firstAttribute="width" constant="240" id="SlS-A6-cOc"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3a-Zm-5EA" userLabel="abstractLabel">
-                    <rect key="frame" x="20" y="406" width="374" height="20.333333333333314"/>
+                    <rect key="frame" x="20" y="290" width="374" height="20.333333333333314"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d6y-oU-mqb" userLabel="leadParagraphTextView">
-                    <rect key="frame" x="20" y="466.33333333333331" width="374" height="219.66666666666669"/>
+                    <rect key="frame" x="20" y="350.33333333333331" width="374" height="244.66666666666669"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" link="YES"/>
@@ -48,35 +49,39 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Click here for the full article" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ahq-ac-twu" userLabel="webUrlTextView">
-                    <rect key="frame" x="127" y="696" width="160" height="40"/>
+                    <rect key="frame" x="127" y="605" width="160" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="160" id="f9n-Sv-mgJ"/>
-                        <constraint firstAttribute="height" constant="40" id="lRT-gO-fnF"/>
+                        <constraint firstAttribute="height" constant="40" id="lUm-Mh-2o7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-Rp-5UT">
+                    <rect key="frame" x="184" y="686" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="centerX" secondItem="d6y-oU-mqb" secondAttribute="centerX" id="0jO-BA-8eb"/>
                 <constraint firstItem="d6y-oU-mqb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2o7-WF-uxY"/>
-                <constraint firstItem="Ahq-ac-twu" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Fv1-ak-BMd"/>
+                <constraint firstItem="iI3-Rp-5UT" firstAttribute="top" secondItem="Ahq-ac-twu" secondAttribute="bottom" constant="41" id="6zc-Xm-Glf"/>
+                <constraint firstAttribute="bottom" secondItem="Ahq-ac-twu" secondAttribute="bottom" constant="91" id="GtC-2t-XUc"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="127" id="KNL-yf-sc8"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="centerX" secondItem="iI3-Rp-5UT" secondAttribute="centerX" id="QuY-DS-oCW"/>
                 <constraint firstItem="Ww9-gF-luG" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Shq-nm-wDN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d6y-oU-mqb" secondAttribute="trailing" constant="20" id="XHR-Ou-Eib"/>
-                <constraint firstItem="s3a-Zm-5EA" firstAttribute="top" secondItem="Ww9-gF-luG" secondAttribute="bottom" constant="66" id="XgN-fw-iq1"/>
+                <constraint firstItem="s3a-Zm-5EA" firstAttribute="top" secondItem="Ww9-gF-luG" secondAttribute="bottom" constant="20" id="XgN-fw-iq1"/>
                 <constraint firstItem="d6y-oU-mqb" firstAttribute="top" secondItem="s3a-Zm-5EA" secondAttribute="bottom" constant="40" id="a5H-W6-gEv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ahq-ac-twu" secondAttribute="bottom" id="aoM-ZP-Ob0"/>
-                <constraint firstItem="Ww9-gF-luG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cXg-74-PVc"/>
+                <constraint firstItem="Ww9-gF-luG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="cXg-74-PVc"/>
                 <constraint firstItem="s3a-Zm-5EA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="g5S-2u-UUR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ahq-ac-twu" secondAttribute="trailing" constant="60" id="lGB-TF-mee"/>
-                <constraint firstItem="Ahq-ac-twu" firstAttribute="top" secondItem="d6y-oU-mqb" secondAttribute="bottom" constant="10" id="paV-nA-YFv"/>
+                <constraint firstItem="Ahq-ac-twu" firstAttribute="top" secondItem="d6y-oU-mqb" secondAttribute="bottom" constant="10" id="w33-PH-xYQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s3a-Zm-5EA" secondAttribute="trailing" constant="20" id="ypm-fc-CNy"/>
-                <constraint firstItem="Ahq-ac-twu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="zNh-LY-sFj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="47.826086956521742" y="75.669642857142847"/>
+            <point key="canvasLocation" x="47.826086956521742" y="75"/>
         </view>
     </objects>
 </document>
