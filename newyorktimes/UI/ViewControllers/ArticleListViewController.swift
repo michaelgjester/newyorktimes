@@ -14,7 +14,6 @@ class ArticleListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var articles: [Article] = []
-    private var filteredArticles: [Article] = []
     private var currentPage : Int = 0
     private var isLoadingList : Bool = false
     
@@ -57,7 +56,7 @@ extension ArticleListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
-            return filteredArticles.count
+            return filteredArticlesBasedOnSearchBar().count
         } else {
             return articles.count
         }
@@ -67,7 +66,7 @@ extension ArticleListViewController: UITableViewDataSource {
         
         let article: Article
         if isFiltering(){
-            article = filteredArticles[indexPath.row]
+            article =  filteredArticlesBasedOnSearchBar()[indexPath.row]
         } else {
             article = articles[indexPath.row]
         }
@@ -128,19 +127,33 @@ extension ArticleListViewController: UIScrollViewDelegate {
 extension ArticleListViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("searchBarEditing...")
+        //do nothing
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("searchText = \(searchText)")
-        filterContentForSearchText(searchText)
+        //update the filtered results on each keystroke
+        tableView.reloadData()
     }
     
-    private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredArticles = articles.filter({( article : Article) -> Bool in
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    private func filteredArticlesBasedOnSearchBar() -> [Article] {
+        guard let searchText = searchBar.text else {
+            //no filtering, just return unfiltered list
+            return articles
+        }
+        
+        let filteredArticles = articles.filter({( article : Article) -> Bool in
             return article.abstract?.lowercased().contains(searchText.lowercased()) ?? false
         })
-        tableView.reloadData()
+        
+        return filteredArticles
     }
     
     private func isFiltering() -> Bool {
