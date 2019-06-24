@@ -52,13 +52,19 @@ struct ArticleImage: Decodable {
 
 class NetworkingManager: NSObject {
     
-    static func loadArticlesWithCompletion(_ completionHandler:@escaping ([Article]) -> Void) -> Void {
+    static func loadArticlesWithCompletion(pageNumber:Int? = nil, _ completionHandler:@escaping ([Article]) -> Void) -> Void {
         
         let baseAddress = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
         let category = "election"
+        let pageString: String
+        if let pageNumber = pageNumber {
+            pageString = "&page=" + String(pageNumber)
+        } else {
+            pageString = ""
+        }
         let apiKey = "d31fe793adf546658bd67e2b6a7fd11a"
         
-        let requestString = baseAddress + "?q=" + category + "&api-key=" + apiKey
+        let requestString = baseAddress + "?q=" + category + pageString + "&api-key=" + apiKey
         
         guard let url = URL(string: requestString) else {
             print("Error: cannot create URL")

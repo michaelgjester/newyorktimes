@@ -16,6 +16,9 @@ class ArticleListViewController: UIViewController {
     
     private var articles: [Article] = []
     
+    var currentPage : Int = 0
+    var isLoadingList : Bool = false
+    
     //MARK: - Lifecycle overrides
     
     init(articles: [Article]) {
@@ -79,5 +82,28 @@ extension ArticleListViewController: UITableViewDelegate {
         //TODO: probably want to push a detail vc when user makes a selection
         //for now just animate the selection action
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension ArticleListViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isLoadingList){
+            self.isLoadingList = true
+            self.loadNextPageOfArticles()
+        }
+    }
+    
+    private func loadNextPageOfArticles() {
+        currentPage += 1
+        NetworkingManager.loadArticlesWithCompletion(pageNumber: currentPage) { [weak self] nextPageOfArticles in
+            
+            guard let self = self else { return }
+            
+            self.articles.append(contentsOf: nextPageOfArticles)
+            self.isLoadingList = false
+            self.tableView.reloadData()
+        }
     }
 }
