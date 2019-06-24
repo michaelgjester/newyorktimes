@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		1DE7052022C045BB001DBAD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7051F22C045BB001DBAD3 /* AppDelegate.swift */; };
-		1DE7052222C045BB001DBAD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7052122C045BB001DBAD3 /* ViewController.swift */; };
+		1DE7052222C045BB001DBAD3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7052122C045BB001DBAD3 /* MainViewController.swift */; };
 		1DE7052522C045BB001DBAD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7052322C045BB001DBAD3 /* Main.storyboard */; };
 		1DE7052722C045BC001DBAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7052622C045BC001DBAD3 /* Assets.xcassets */; };
 		1DE7052A22C045BC001DBAD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7052822C045BC001DBAD3 /* LaunchScreen.storyboard */; };
+		1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053222C04628001DBAD3 /* ImageCache.swift */; };
+		1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053322C04628001DBAD3 /* NetworkingManager.swift */; };
+		1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1DE7051C22C045BB001DBAD3 /* newyorktimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newyorktimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE7051F22C045BB001DBAD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1DE7052122C045BB001DBAD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1DE7052122C045BB001DBAD3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1DE7052422C045BB001DBAD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DE7052622C045BC001DBAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DE7052922C045BC001DBAD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DE7052B22C045BC001DBAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DE7053222C04628001DBAD3 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		1DE7053322C04628001DBAD3 /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,25 @@
 		1DE7051E22C045BB001DBAD3 /* newyorktimes */ = {
 			isa = PBXGroup;
 			children = (
+				1DE7053122C045ED001DBAD3 /* Networking */,
 				1DE7051F22C045BB001DBAD3 /* AppDelegate.swift */,
-				1DE7052122C045BB001DBAD3 /* ViewController.swift */,
+				1DE7052122C045BB001DBAD3 /* MainViewController.swift */,
 				1DE7052322C045BB001DBAD3 /* Main.storyboard */,
 				1DE7052622C045BC001DBAD3 /* Assets.xcassets */,
 				1DE7052822C045BC001DBAD3 /* LaunchScreen.storyboard */,
 				1DE7052B22C045BC001DBAD3 /* Info.plist */,
 			);
 			path = newyorktimes;
+			sourceTree = "<group>";
+		};
+		1DE7053122C045ED001DBAD3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1DE7053222C04628001DBAD3 /* ImageCache.swift */,
+				1DE7053322C04628001DBAD3 /* NetworkingManager.swift */,
+				1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DE7052222C045BB001DBAD3 /* ViewController.swift in Sources */,
+				1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */,
+				1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */,
+				1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */,
+				1DE7052222C045BB001DBAD3 /* MainViewController.swift in Sources */,
 				1DE7052022C045BB001DBAD3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +303,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CABD2QRC7A;
 				INFOPLIST_FILE = newyorktimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CABD2QRC7A;
 				INFOPLIST_FILE = newyorktimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
