@@ -31,10 +31,22 @@ struct Documents: Decodable {
 struct Article: Decodable {
     let abstract: String?
     let lead_paragraph: String?
+    let multimedia: [ArticleImage]
     
     enum CodingKeys: String, CodingKey {
         case abstract
         case lead_paragraph
+        case multimedia
+    }
+}
+
+struct ArticleImage: Decodable {
+    let crop_name: String?
+    let url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case crop_name
+        case url
     }
 }
 

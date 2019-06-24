@@ -11,7 +11,13 @@ import UIKit
 
 extension UIImageView{
     
-    func downloadImageFromNetworkAtURL(url: String){
+    func downloadImageFromNetworkAtURL(url: String?){
+        
+        //if url string is nil, use stock "image not available" image
+        guard let url = url else {
+            self.image = UIImage(named: "ImageNotAvailable")
+            return
+        }
         
         //first check to see if we have a cached image, if so return early
         if let cachedImage = ImageCache.sharedInstance.object(forKey: url as NSString) {

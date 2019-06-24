@@ -15,6 +15,11 @@
 		1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053222C04628001DBAD3 /* ImageCache.swift */; };
 		1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053322C04628001DBAD3 /* NetworkingManager.swift */; };
 		1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */; };
+		1DE7053D22C055C9001DBAD3 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */; };
+		1DE7053E22C055C9001DBAD3 /* ArticleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */; };
+		1DE7054122C057EF001DBAD3 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7053F22C057EF001DBAD3 /* ArticleTableViewCell.swift */; };
+		1DE7054222C057EF001DBAD3 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7054022C057EF001DBAD3 /* ArticleTableViewCell.xib */; };
+		1DE7054422C057FF001DBAD3 /* CellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7054322C057FF001DBAD3 /* CellProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		1DE7053222C04628001DBAD3 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1DE7053322C04628001DBAD3 /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
+		1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
+		1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewController.xib; sourceTree = "<group>"; };
+		1DE7053F22C057EF001DBAD3 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		1DE7054022C057EF001DBAD3 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
+		1DE7054322C057FF001DBAD3 /* CellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +70,9 @@
 		1DE7051E22C045BB001DBAD3 /* newyorktimes */ = {
 			isa = PBXGroup;
 			children = (
+				1DE7053822C05561001DBAD3 /* UI */,
 				1DE7053122C045ED001DBAD3 /* Networking */,
 				1DE7051F22C045BB001DBAD3 /* AppDelegate.swift */,
-				1DE7052122C045BB001DBAD3 /* MainViewController.swift */,
-				1DE7052322C045BB001DBAD3 /* Main.storyboard */,
 				1DE7052622C045BC001DBAD3 /* Assets.xcassets */,
 				1DE7052822C045BC001DBAD3 /* LaunchScreen.storyboard */,
 				1DE7052B22C045BC001DBAD3 /* Info.plist */,
@@ -79,6 +88,36 @@
 				1DE7053422C04628001DBAD3 /* UIImageView+Networking.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		1DE7053822C05561001DBAD3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1DE7053922C0556D001DBAD3 /* Cells */,
+				1DE7053A22C05573001DBAD3 /* ViewControllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		1DE7053922C0556D001DBAD3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1DE7054322C057FF001DBAD3 /* CellProtocols.swift */,
+				1DE7053F22C057EF001DBAD3 /* ArticleTableViewCell.swift */,
+				1DE7054022C057EF001DBAD3 /* ArticleTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1DE7053A22C05573001DBAD3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1DE7052122C045BB001DBAD3 /* MainViewController.swift */,
+				1DE7052322C045BB001DBAD3 /* Main.storyboard */,
+				1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */,
+				1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +178,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DE7054222C057EF001DBAD3 /* ArticleTableViewCell.xib in Resources */,
 				1DE7052A22C045BC001DBAD3 /* LaunchScreen.storyboard in Resources */,
+				1DE7053E22C055C9001DBAD3 /* ArticleListViewController.xib in Resources */,
 				1DE7052722C045BC001DBAD3 /* Assets.xcassets in Resources */,
 				1DE7052522C045BB001DBAD3 /* Main.storyboard in Resources */,
 			);
@@ -155,7 +196,10 @@
 				1DE7053522C04628001DBAD3 /* ImageCache.swift in Sources */,
 				1DE7053722C04628001DBAD3 /* UIImageView+Networking.swift in Sources */,
 				1DE7053622C04628001DBAD3 /* NetworkingManager.swift in Sources */,
+				1DE7054422C057FF001DBAD3 /* CellProtocols.swift in Sources */,
+				1DE7053D22C055C9001DBAD3 /* ArticleListViewController.swift in Sources */,
 				1DE7052222C045BB001DBAD3 /* MainViewController.swift in Sources */,
+				1DE7054122C057EF001DBAD3 /* ArticleTableViewCell.swift in Sources */,
 				1DE7052022C045BB001DBAD3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
