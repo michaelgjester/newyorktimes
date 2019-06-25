@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ArticleListViewDataProviderDelegate: class {
     func articleListDidUpdate()
@@ -30,9 +31,14 @@ final class ArticleListViewDataProvider: NSObject {
     
     weak var delegate: ArticleListViewDataProviderDelegate?
     
+    public let searchController = UISearchController(searchResultsController: nil)
     
     private(set) var isLoading: Bool = false
+    //TODO: investigate using an enum for filtering/non-filtering state
+    //rather than boolean flag
+    private var isFiltering: Bool = false
     private var articles: [Article] = []
+    private var filteredArticles: [Article] = []
     private var currentPage : Int = 0
 }
 
@@ -67,19 +73,22 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
     }
     
     func numberOfArticles() -> Int {
-        return articles.count
+        if isFiltering {
+            return filteredArticles.count
+        } else {
+            return articles.count
+        }
     }
     
     func configuratorForArticle(at indexPath: IndexPath) -> CellConfigurator? {
         
         let article: Article
-//        if isFiltering(){
-//            article =  filteredArticlesBasedOnSearchBar()[indexPath.row]
-//        } else {
-//            article = articles[indexPath.row]
-//        }
-        article = articles[indexPath.row]
-        
+        if isFiltering{
+            article =  filteredArticles[indexPath.row]
+        } else {
+            article = articles[indexPath.row]
+        }
+
         let abstract = article.abstract
         let multimedia: [ArticleImage] = article.multimedia
         let articleImage: ArticleImage? = multimedia.filter { $0.crop_name == "thumbStandard"}.first
@@ -96,4 +105,47 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
     func didSelectArticle(at indexPath: IndexPath) -> Article {
         return articles[indexPath.row]
     }
+}
+
+// MARK: - UISearchBarDelegate
+extension ArticleListViewDataProvider: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //do nothing
+        //relying on 'textDidChange' method
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        //set the filtering state and filteredArticles array
+        //based upon the search term
+        let searchTermLength = searchBar.text?.count ?? 0
+        isFiltering = searchTermLength > 0
+        filteredArticles = filteredArticlesBasedOnSearchBar(searchBar)
+        
+        //update the filtered results on each keystroke
+        delegate?.articleListDidUpdate()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    private func filteredArticlesBasedOnSearchBar(_ searchBar: UISearchBar) -> [Article] {
+        guard let searchText = searchBar.text else {
+            //no filtering, just return unfiltered list
+            return articles
+        }
+        
+        let filteredArticles = articles.filter({( article : Article) -> Bool in
+            return article.abstract?.lowercased().contains(searchText.lowercased()) ?? false
+        })
+        
+        return filteredArticles
+    }
+    
 }
