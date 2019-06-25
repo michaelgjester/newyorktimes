@@ -58,6 +58,7 @@ class ArticleDetailsViewController: UIViewController {
             let attributedString = NSMutableAttributedString(string: displayString)
             attributedString.addAttribute(.link, value: webUrl, range: NSRange(location: 0, length: displayString.count))
             webLinkTextView.attributedText = attributedString
+            //webLinkTextView.font = UIFont(name: "TimesNewRomanPS-BoldMT", size: 14.0)
         }
         
         shareButton.setTitle("SHARE", for: .normal)
@@ -65,7 +66,7 @@ class ArticleDetailsViewController: UIViewController {
     }
     
     @objc private func shareButtonTapped() {
-        let activityItems = ["check out this link", article.web_url]
+        let activityItems = ["check out this link!", article.web_url]
         let vc = UIActivityViewController(activityItems: activityItems as [Any], applicationActivities: nil)
         present(vc, animated: true, completion: nil)
     }

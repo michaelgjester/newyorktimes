@@ -10,16 +10,30 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    let dataProvider = ArticleListViewDataProvider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let dataProvider = ArticleListViewDataProvider()
+        //TODO:
+        //this is just a mechanism to display a logo while
+        //the initial load is occurring; probably could move
+        //this into the ArticleListViewController and use
+        //child VCs/loadIndicatorViews etc.
+        dataProvider.delegate = self
+        dataProvider.requestInitialArticleList()
+    }
+    
+}
+
+extension MainViewController: ArticleListViewDataProviderDelegate {
+    func articleListDidUpdate() {
+        
         let articleListViewController = ArticleListViewController(dataProvider: dataProvider)
         dataProvider.delegate = articleListViewController
         let navigationController = UINavigationController(rootViewController: articleListViewController)
         present(navigationController, animated: true)
     }
-    
 }
 

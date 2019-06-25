@@ -32,6 +32,7 @@ class ArticleListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavBar()
         setupSearchBar()
         setupTableView()
     }
@@ -43,6 +44,10 @@ class ArticleListViewController: UIViewController {
     }
 
     //MARK: - Initial Setup
+    
+    private func setupNavBar() {
+        title = "Politics"
+    }
     
     private func setupSearchBar() {
         searchBar.delegate = dataProvider

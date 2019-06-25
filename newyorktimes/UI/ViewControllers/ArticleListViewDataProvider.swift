@@ -65,8 +65,6 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
             guard let self = self else { return }
             
             self.articles.append(contentsOf: nextPageOfArticles)
-            //self.isLoadingList = false
-            //self.tableView.reloadData()
             self.isLoading = false
             self.delegate?.articleListDidUpdate()
         }
@@ -103,7 +101,11 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
     //TODO: make this protocol method help with the navigation flow
     //rather than just returning the Article object
     func didSelectArticle(at indexPath: IndexPath) -> Article {
-        return articles[indexPath.row]
+        if isFiltering {
+            return filteredArticles[indexPath.row]
+        } else {
+            return articles[indexPath.row]
+        }
     }
 }
 
