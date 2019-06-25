@@ -16,7 +16,7 @@ protocol ArticleListViewDataProviderProtocol {
 
     func requestInitialArticleList()
     
-    func requestArticlesForPage(page: Int)
+    func requestNextPageOfArticles()
     
     func numberOfArticles() -> Int
     
@@ -30,8 +30,10 @@ final class ArticleListViewDataProvider: NSObject {
     
     weak var delegate: ArticleListViewDataProviderDelegate?
     
-    private var articles: [Article] = []
     
+    private(set) var isLoading: Bool = false
+    private var articles: [Article] = []
+    private var currentPage : Int = 0
 }
 
 extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
@@ -48,8 +50,20 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
         
     }
     
-    func requestArticlesForPage(page: Int) {
-        //do something here
+    func requestNextPageOfArticles() {
+        
+        currentPage += 1
+        isLoading = true
+        NetworkingManager.loadArticlesWithCompletion(pageNumber: currentPage) { [weak self] nextPageOfArticles in
+            
+            guard let self = self else { return }
+            
+            self.articles.append(contentsOf: nextPageOfArticles)
+            //self.isLoadingList = false
+            //self.tableView.reloadData()
+            self.isLoading = false
+            self.delegate?.articleListDidUpdate()
+        }
     }
     
     func numberOfArticles() -> Int {

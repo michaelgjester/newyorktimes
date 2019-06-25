@@ -127,35 +127,15 @@ extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate 
     
 }
 
-//// MARK: - UITableViewDelegate
-//extension ArticleListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let articleDetailsViewController = ArticleDetailsViewController(article: articles[indexPath.row])
-//        self.navigationController?.pushViewController(articleDetailsViewController, animated: true)
-//    }
-//}
 
 // MARK: - UIScrollViewDelegate
 extension ArticleListViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isLoadingList){
-            self.isLoadingList = true
-            self.loadNextPageOfArticles()
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !dataProvider.isLoading){
+            dataProvider.requestNextPageOfArticles()
         }
-    }
-    
-    private func loadNextPageOfArticles() {
-        currentPage += 1
-        NetworkingManager.loadArticlesWithCompletion(pageNumber: currentPage) { [weak self] nextPageOfArticles in
-            
-            guard let self = self else { return }
-            
-            self.articles.append(contentsOf: nextPageOfArticles)
-            self.isLoadingList = false
-            self.tableView.reloadData()
-        }
+        
     }
 }
 
