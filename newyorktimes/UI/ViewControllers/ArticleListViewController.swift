@@ -17,17 +17,29 @@ class ArticleListViewController: UIViewController {
     private var currentPage : Int = 0
     private var isLoadingList : Bool = false
     
-    //MARK: - Lifecycle overrides
+    private let dataProvider: ArticleListViewDataProvider
+    private let articleCellReuseId = "ArticleTableViewCell"
     
+    //MARK: - Initializers
+    
+    init(dataProvider: ArticleListViewDataProvider) {
+        self.dataProvider = dataProvider
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    /*
     init(articles: [Article]) {
         self.articles = articles
         
         super.init(nibName: nil, bundle: nil)
     }
+    */
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Lifecycle overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,35 +47,45 @@ class ArticleListViewController: UIViewController {
         setupSearchBar()
         setupTableView()
     }
+ 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dataProvider.requestInitialArticleList()
+    }
 
 
     //MARK: - Initial Setup
     
-    private func setupTableView() {
-        tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "ArticleTableViewCell")
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-    
     private func setupSearchBar() {
         searchBar.delegate = self
+    }
+    
+    private func setupTableView() {
+        tableView.register(UINib(nibName: articleCellReuseId, bundle: nil), forCellReuseIdentifier: articleCellReuseId)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
 }
 
-//MARK: - UITableViewDataSource
-extension ArticleListViewController: UITableViewDataSource {
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /*
         if isFiltering() {
             return filteredArticlesBasedOnSearchBar().count
         } else {
             return articles.count
         }
+        */
+        return dataProvider.numberOfArticles()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        /*
         let article: Article
         if isFiltering(){
             article =  filteredArticlesBasedOnSearchBar()[indexPath.row]
@@ -76,28 +98,43 @@ extension ArticleListViewController: UITableViewDataSource {
         let articleImage: ArticleImage? = multimedia.filter { $0.crop_name == "thumbStandard"}.first
         let thumbnailImageUrl = articleImage?.url
         
+        
         let articleCellConfig = ArticleCellConfigurator(abstract: abstract,
                                                         thumbNailImageUrl: thumbnailImageUrl)
+        */
+        let articleCellConfig = dataProvider.configuratorForArticle(at: indexPath)
         
-        let reuseIdentifier = articleCellConfig.cellIdentifier
+        //FIXME
+        //should be a better way to grab the cellId
+        let reuseIdentifier = articleCellConfig?.cellIdentifier ?? articleCellReuseId
         
         let cell: ArticleTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! ArticleTableViewCell
         
-        cell.configure(articleCellConfig)
+        if let config = articleCellConfig {
+            cell.configure(config)
+        }
         
         return cell
     }
     
-}
-
-// MARK: - UITableViewDelegate
-extension ArticleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
-        let articleDetailsViewController = ArticleDetailsViewController(article: articles[indexPath.row])
+        let selectedArticle = dataProvider.didSelectArticle(at: indexPath)
+        let articleDetailsViewController = ArticleDetailsViewController(article: selectedArticle)
         self.navigationController?.pushViewController(articleDetailsViewController, animated: true)
     }
+    
 }
+
+//// MARK: - UITableViewDelegate
+//extension ArticleListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let articleDetailsViewController = ArticleDetailsViewController(article: articles[indexPath.row])
+//        self.navigationController?.pushViewController(articleDetailsViewController, animated: true)
+//    }
+//}
 
 // MARK: - UIScrollViewDelegate
 extension ArticleListViewController: UIScrollViewDelegate {
@@ -159,5 +196,12 @@ extension ArticleListViewController: UISearchBarDelegate {
     private func isFiltering() -> Bool {
         let searchTermLength = searchBar.text?.count ?? 0
         return searchTermLength > 0
+    }
+}
+
+extension ArticleListViewController: ArticleListViewDataProviderDelegate {
+    
+    func articleListDidUpdate() {
+        tableView.reloadData()
     }
 }

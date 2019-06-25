@@ -14,11 +14,20 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let dataProvider = ArticleListViewDataProvider()
+        
+        let articleListViewController = ArticleListViewController(dataProvider: dataProvider)
+        dataProvider.delegate = articleListViewController
+        self.navigationController?.pushViewController(articleListViewController, animated: true)
+//        self.navigationController?.pushViewController(ArticleListViewController, animated: true)
+//
+        /*
         NetworkingManager.loadArticlesWithCompletion { (articles) in
             let articlesListViewController = ArticleListViewController(articles: articles)
             self.navigationController?.pushViewController(articlesListViewController, animated: true)
             //self.present(articlesListViewController, animated: true, completion: nil)
         }
+        */
     }
 
 

@@ -22,6 +22,7 @@
 		1DE7054422C057FF001DBAD3 /* CellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7054322C057FF001DBAD3 /* CellProtocols.swift */; };
 		1DE7054722C08FAD001DBAD3 /* ArticleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */; };
 		1DE7054822C08FAD001DBAD3 /* ArticleDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DE7054622C08FAD001DBAD3 /* ArticleDetailsViewController.xib */; };
+		1DEC9A7722C2518800FCF323 /* ArticleListViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC9A7622C2518800FCF323 /* ArticleListViewDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		1DE7054322C057FF001DBAD3 /* CellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocols.swift; sourceTree = "<group>"; };
 		1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsViewController.swift; sourceTree = "<group>"; };
 		1DE7054622C08FAD001DBAD3 /* ArticleDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleDetailsViewController.xib; sourceTree = "<group>"; };
+		1DEC9A7622C2518800FCF323 /* ArticleListViewDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				1DE7052122C045BB001DBAD3 /* MainViewController.swift */,
 				1DE7052322C045BB001DBAD3 /* Main.storyboard */,
+				1DEC9A7622C2518800FCF323 /* ArticleListViewDataProvider.swift */,
 				1DE7053B22C055C9001DBAD3 /* ArticleListViewController.swift */,
 				1DE7053C22C055C9001DBAD3 /* ArticleListViewController.xib */,
 				1DE7054522C08FAD001DBAD3 /* ArticleDetailsViewController.swift */,
@@ -216,6 +219,7 @@
 				1DE7053D22C055C9001DBAD3 /* ArticleListViewController.swift in Sources */,
 				1DE7052222C045BB001DBAD3 /* MainViewController.swift in Sources */,
 				1DE7054122C057EF001DBAD3 /* ArticleTableViewCell.swift in Sources */,
+				1DEC9A7722C2518800FCF323 /* ArticleListViewDataProvider.swift in Sources */,
 				1DE7052022C045BB001DBAD3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
