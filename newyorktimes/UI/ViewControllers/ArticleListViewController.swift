@@ -42,7 +42,6 @@ class ArticleListViewController: UIViewController {
         dataProvider.requestInitialArticleList()
     }
 
-
     //MARK: - Initial Setup
     
     private func setupSearchBar() {
@@ -94,6 +93,7 @@ extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate 
 // MARK: - UIScrollViewDelegate
 extension ArticleListViewController: UIScrollViewDelegate {
 
+    //used to enable infinite scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !dataProvider.isLoading){
             dataProvider.requestNextPageOfArticles()
