@@ -11,6 +11,7 @@ import UIKit
 
 protocol ArticleListViewDataProviderDelegate: class {
     func articleListDidUpdate()
+    func articleListFailedToUpdate(with error:Error)
 }
 
 protocol ArticleListViewDataProviderProtocol {
@@ -45,12 +46,23 @@ final class ArticleListViewDataProvider: NSObject {
 extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
     
     func requestInitialArticleList() {
-        NetworkingManager.loadArticlesWithCompletion { [weak self] (articles) in
+        NetworkingManager.loadArticlesWithCompletion { [weak self] (articles, error)  in
             
             guard let strongSelf = self else { return }
             
+            if let error = error {
+                print("error = \(error.localizedDescription)")
+                strongSelf.delegate?.articleListFailedToUpdate(with: error)
+                return
+            }
+            
+            guard let articles = articles else {
+                let error = NSError(domain: NetworkErrors.Domains.NYTimes, code: NetworkErrors.Codes.NilArticlesArrayCode, userInfo: [NetworkErrors.Keys.DescriptionKey : NetworkErrors.Descriptions.NilDataDescription])
+                strongSelf.delegate?.articleListFailedToUpdate(with: error)
+                return
+            }
+            
             strongSelf.articles = articles
-        
             strongSelf.delegate?.articleListDidUpdate()
         }
         
@@ -60,12 +72,25 @@ extension ArticleListViewDataProvider: ArticleListViewDataProviderProtocol {
         
         currentPage += 1
         isLoading = true
-        NetworkingManager.loadArticlesWithCompletion(pageNumber: currentPage) { [weak self] nextPageOfArticles in
+        NetworkingManager.loadArticlesWithCompletion(pageNumber: currentPage) { [weak self] (nextPageOfArticles, error) in
             
             guard let self = self else { return }
             
-            self.articles.append(contentsOf: nextPageOfArticles)
             self.isLoading = false
+            
+            if let error = error {
+                print("error = \(error.localizedDescription)")
+                self.delegate?.articleListFailedToUpdate(with: error)
+                return
+            }
+            
+            guard let nextPageOfArticles = nextPageOfArticles else {
+                let error = NSError(domain: NetworkErrors.Domains.NYTimes, code: NetworkErrors.Codes.NilNextPageOfArticlesArrayCode, userInfo: [NetworkErrors.Keys.DescriptionKey : NetworkErrors.Descriptions.NilNextPageOfArticlesArrayDescription])
+                self.delegate?.articleListFailedToUpdate(with: error)
+                return
+            }
+            
+            self.articles.append(contentsOf: nextPageOfArticles)
             self.delegate?.articleListDidUpdate()
         }
     }

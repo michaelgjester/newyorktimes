@@ -35,5 +35,9 @@ extension MainViewController: ArticleListViewDataProviderDelegate {
         let navigationController = UINavigationController(rootViewController: articleListViewController)
         present(navigationController, animated: true)
     }
+    
+    func articleListFailedToUpdate(with error: Error) {
+        print("There was an error retrieving articles: \(error.localizedDescription)")
+    }
 }
 

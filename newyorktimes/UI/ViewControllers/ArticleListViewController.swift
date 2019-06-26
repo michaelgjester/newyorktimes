@@ -113,5 +113,9 @@ extension ArticleListViewController: ArticleListViewDataProviderDelegate {
     func articleListDidUpdate() {
         tableView.reloadData()
     }
+    
+    func articleListFailedToUpdate(with error: Error) {
+        print("an error occurred: error = \(error.localizedDescription)")
+    }
 }
 

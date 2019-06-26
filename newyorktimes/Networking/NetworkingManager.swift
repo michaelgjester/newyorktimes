@@ -8,6 +8,33 @@
 
 import Foundation
 
+typealias ArticleListCompletion = (_ articles: [Article]?, _ error: Error?) -> Void
+
+struct NetworkErrors {
+    
+    struct Keys {
+        static let DescriptionKey = "DescriptionKey"
+    }
+    
+    struct Domains {
+        static let NYTimes = "NeyYorkTimesApiDomain"
+    }
+    
+    struct Codes {
+        static let NilDataCode = 1001
+        static let BadJsonDataCode = 1002
+        static let NilArticlesArrayCode = 1003
+        static let NilNextPageOfArticlesArrayCode = 1004
+    }
+    
+    struct Descriptions {
+        static let NilDataDescription = "The network returned a nil data set"
+        static let BadJsonDataDescription = "Exception thrown while trying to decode JSON response from the network"
+        static let NilArticlesArrayDescription = "The network returned a nil set of news articles"
+        static let NilNextPageOfArticlesArrayDescription = "The network returned a nil set of news articles when trying to retrieve the next page"
+    }
+}
+
 struct NewsStoriesResponse: Decodable {
     
     let status: String?
@@ -54,7 +81,7 @@ struct ArticleImage: Decodable {
 
 class NetworkingManager: NSObject {
     
-    static func loadArticlesWithCompletion(pageNumber:Int? = nil, _ completionHandler:@escaping ([Article]) -> Void) -> Void {
+    static func loadArticlesWithCompletion(pageNumber:Int? = nil, _ completionHandler:@escaping ArticleListCompletion) {
         
         let baseAddress = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
         let category = "election"
@@ -86,12 +113,15 @@ class NetworkingManager: NSObject {
             //check 1: no errors
             guard error == nil else {
                 print("error calling the request:\(error!)")
+                completionHandler(nil, error)
                 return
             }
             
             //check 2: data is non-nil
             guard let data = data else {
                 print("Error: data is nil")
+                let nilDataError = NSError(domain: NetworkErrors.Domains.NYTimes, code: NetworkErrors.Codes.NilDataCode, userInfo: [NetworkErrors.Keys.DescriptionKey:NetworkErrors.Descriptions.NilDataDescription])
+                completionHandler(nil, nilDataError)
                 return
             }
             
@@ -102,11 +132,13 @@ class NetworkingManager: NSObject {
                     let jsonResponse: NewsStoriesResponse = try JSONDecoder().decode(NewsStoriesResponse.self, from: data)
                     
                     if let articles: [Article] = jsonResponse.response?.docs {
-                        completionHandler(articles)
+                        completionHandler(articles, nil)
                     }
 
                 } catch let error as NSError {
                     print("Error: \(error)")
+                    let badJsonError = NSError(domain: NetworkErrors.Domains.NYTimes, code: NetworkErrors.Codes.BadJsonDataCode, userInfo: [NetworkErrors.Keys.DescriptionKey:NetworkErrors.Descriptions.BadJsonDataDescription])
+                    completionHandler(nil, badJsonError)
                 }
             }
         }
