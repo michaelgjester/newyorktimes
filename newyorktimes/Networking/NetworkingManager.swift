@@ -91,7 +91,8 @@ class NetworkingManager: NSObject {
         } else {
             pageString = ""
         }
-        let apiKey = "d31fe793adf546658bd67e2b6a7fd11a"
+
+        let apiKey = "kDTxUbA5aqrG1jlZ4B5XGANUyBYRQuWx"
         
         let requestString = baseAddress + "?q=" + category + pageString + "&api-key=" + apiKey
         
